@@ -1,6 +1,6 @@
 FlowRouter.route('/', {
   action() {
-    ReactLayout.render(Ssup);
+    ReactLayout.render(TweetBox);
   }
 });
 

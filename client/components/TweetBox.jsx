@@ -1,7 +1,7 @@
-Ssup = React.createClass({
+TweetBox = React.createClass({
   render() {
     return (
-      <div className="ssup-box">
+      <div className="tweet-box">
         <h1>Hello</h1>
         <a href="/post_tweet">Post Tweet</a>
       </div>
