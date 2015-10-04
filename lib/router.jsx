@@ -9,3 +9,9 @@ FlowRouter.route('/post_tweet', {
     ReactLayout.render(PostTweet);
   }
 });
+
+FlowRouter.notFound = {
+  action() {
+    ReactLayout.render(NotFound);
+  }
+}
