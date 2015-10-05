@@ -4,10 +4,11 @@ TweetList = React.createClass({
       return <TweetItem
               key={tweet._id}
               _id={tweet._id}
+              author={tweet.author}
               body={tweet.body}
               />
     });
-    
+
     return (
       <div className="tweet-list">
         <ul>
