@@ -10,8 +10,8 @@ TweetBox = React.createClass({
   render() {
     return (
       <div className="tweet-box">
-        <h1>Hello</h1>
         <a href="/post_tweet">Post Tweet</a>
+        <h3>Tweet List</h3>
         <TweetList tweets={this.data.tweets} />
       </div>
     );
