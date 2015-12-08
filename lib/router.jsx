@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
   name: 'home',
   subscriptions(params) {
-    this.register("tweets", Meteor.subscribe("tweets"));
+    this.register("tweets", Meteor.subscribe("tweets", 0));
   },
 
   action() {

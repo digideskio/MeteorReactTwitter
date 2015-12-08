@@ -3,14 +3,20 @@ TweetBox = React.createClass({
 
   getMeteorData() {
     return {
-      tweets: Tweets.find({}).fetch()
+      tweets: Tweets.find({}).fetch(),
+      user: Meteor.user()
     }
   },
 
   render() {
+    let postTweet = "";
+    if(this.data.user){
+      postTweet = <a href="/post_tweet">Post Tweet</a>;
+    }
+
     return (
       <div className="tweet-box">
-        <a href="/post_tweet">Post Tweet</a>
+        {postTweet}
         <h3>Tweet List</h3>
         <TweetList tweets={this.data.tweets} />
       </div>
