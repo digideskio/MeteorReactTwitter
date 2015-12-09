@@ -11,7 +11,9 @@ FlowRouter.route('/', {
 FlowRouter.route('/tweets', {
   name: 'tweets',
   subscriptions(params, queryParams) {
-    this.register('tweets', Meteor.subscribe('tweets', queryParams.limit));
+    Tracker.autorun(()=>{
+      this.register('tweets', Meteor.subscribe('tweets', Session.get('limit'))); //queryParams.limit
+    });
   },
 
   action() {

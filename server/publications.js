@@ -1,12 +1,13 @@
 Meteor.publish("tweets", (limit)=> {
-  console.log('LIMIT: ', limit);
+  // If user clicks "Load More",
+  // increment the limit / number of tweets to load
   var limitNum = parseInt(limit);
-  console.log(typeof limitNum);
   if(limitNum){
     check(limitNum, Number);
     return Tweets.find({}, {sort: {submitted: -1}, limit: limitNum});
   } else {
-    return Tweets.find({}, {sort: {submitted: -1}, limit: 10});
+    // Initial load default limit is 3 (3 most recent tweets)
+    return Tweets.find({}, {sort: {submitted: -1}, limit: 3});
   }
   
 });
