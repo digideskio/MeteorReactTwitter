@@ -1,7 +1,17 @@
 FlowRouter.route('/', {
   name: 'home',
-  subscriptions(params) {
-    this.register("tweets", Meteor.subscribe("tweets", 0));
+
+  action() {
+    ReactLayout.render(MainLayout, {
+      content: <Home />
+    });
+  }
+});
+
+FlowRouter.route('/tweets', {
+  name: 'tweets',
+  subscriptions(params, queryParams) {
+    this.register('tweets', Meteor.subscribe('tweets', queryParams.limit));
   },
 
   action() {
