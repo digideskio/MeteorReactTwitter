@@ -4,6 +4,7 @@ TweetItem = React.createClass({
     author: React.PropTypes.string.isRequired,
     userId: React.PropTypes.string,
     body: React.PropTypes.string.isRequired
+    // submitted: React.PropTypes.instanceOf(Date).isRequired
   },
 
   handleDelete(e) {
@@ -31,20 +32,21 @@ TweetItem = React.createClass({
   render() {
     let tweetItem = '';
     let profileLink = `/users/${this.props.userId}`;
-    
+    let time = moment(new Date(this.props.submitted)).fromNow();
+
     if(Meteor.userId() && Meteor.userId() === this.props.userId) {
       tweetItem = <p>
-                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
+                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
                     <span> <button onClick={this.handleDelete}>X</button></span>
                   </p>;
     } else if(Meteor.userId() && Meteor.userId() !== this.props.userId){
       tweetItem = <p>
-                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
+                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
                     <span> <button onClick={this.retweet}>Retweet</button></span>
                   </p>;
     } else {
       tweetItem = <p>
-                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
+                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
                   </p>;
     }
 

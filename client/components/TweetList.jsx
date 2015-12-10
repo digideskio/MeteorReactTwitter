@@ -7,6 +7,7 @@ TweetList = React.createClass({
               author={tweet.author}
               userId={tweet.userId}
               body={tweet.body}
+              submitted={tweet.submitted}
               />
     });
 
