@@ -26,7 +26,6 @@ ProfileBox = React.createClass({
       return (
         <div>
           <h1>No user found</h1>
-          <a href="/tweets">TWEETS</a>
         </div>
       )
     }
