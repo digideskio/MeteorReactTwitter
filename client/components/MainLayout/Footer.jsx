@@ -7,7 +7,9 @@ Footer = React.createClass({
       bottom: 0,
       height: '40px',
       width: '100%',
-      textAlign: 'center'
+      marginTop: '10px',
+      textAlign: 'center',
+      borderTop: '1px solid #000'
     };
     
     return (

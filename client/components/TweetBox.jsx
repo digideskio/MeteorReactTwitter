@@ -1,15 +1,15 @@
 TweetBox = React.createClass({
   mixins: [ReactMeteorData],
 
-  getInitialState() {
-    return {
-      limit: Session.get('limit')
-    }
-  },
+  // getInitialState() {
+  //   return {
+  //     limit: Session.get('limit')
+  //   }
+  // },
 
   getMeteorData() {
     return {
-      tweets: Tweets.find({}).fetch(),
+      tweets: Tweets.find({}, { sort: { submitted: -1 } }).fetch(),
       user: Meteor.user()
     }
   },

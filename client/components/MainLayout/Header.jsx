@@ -7,7 +7,8 @@ Header = React.createClass({
       top: 0,
       left: 0,
       height: '30px',
-      width: '100%'
+      width: '100%',
+      padding: '15px 10px 5px 10px'
     };
 
     let headerItem = {

@@ -36,7 +36,10 @@ FlowRouter.route('/post_tweet', {
 FlowRouter.route('/users/:userid', {
   name: 'user',
   subscriptions(params, queryParams) {
-    this.register('user', Meteor.subscribe('user', params.userid)); 
+    Tracker.autorun(()=>{
+      this.register('profile-tweets', Meteor.subscribe('profile-tweets', params.userid, Session.get('profilelimit'))); 
+    });
+    this.register('user', Meteor.subscribe('user', params.userid));
   },
 
   action() {

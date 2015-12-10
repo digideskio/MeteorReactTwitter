@@ -25,7 +25,7 @@ TweetItem = React.createClass({
       if(err) {
         console.log(err.reason);
       }
-      FlowRouter.go('/');
+      FlowRouter.go('/tweets');
     });
   },
 
