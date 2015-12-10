@@ -14,7 +14,7 @@ TweetItem = React.createClass({
   retweet(e) {
     e.preventDefault();
 
-    let body = this.props.body + ' retweet';
+    let body = `${this.props.body} retweet`;
 
     let tweet = {
       body: body
@@ -30,19 +30,21 @@ TweetItem = React.createClass({
 
   render() {
     let tweetItem = '';
+    let profileLink = `/users/${this.props.userId}`;
+    
     if(Meteor.userId() && Meteor.userId() === this.props.userId) {
       tweetItem = <p>
-                    {this.props.body} by {this.props.author}
+                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
                     <span> <button onClick={this.handleDelete}>X</button></span>
                   </p>;
     } else if(Meteor.userId() && Meteor.userId() !== this.props.userId){
       tweetItem = <p>
-                    {this.props.body} by {this.props.author}
+                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
                     <span> <button onClick={this.retweet}>Retweet</button></span>
                   </p>;
     } else {
       tweetItem = <p>
-                    {this.props.body} by {this.props.author}
+                    {this.props.body} by <a href={profileLink}>{this.props.author}</a>
                   </p>;
     }
 

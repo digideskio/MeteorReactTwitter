@@ -33,6 +33,19 @@ FlowRouter.route('/post_tweet', {
   }
 });
 
+FlowRouter.route('/users/:userid', {
+  name: 'user',
+  subscriptions(params, queryParams) {
+    this.register('user', Meteor.subscribe('user', params.userid)); 
+  },
+
+  action() {
+    ReactLayout.render(MainLayout, {
+      content: <ProfileBox />
+    });
+  }
+});
+
 FlowRouter.notFound = {
   name: 'notFound',
   action() {

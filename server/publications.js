@@ -11,3 +11,8 @@ Meteor.publish("tweets", (limit)=> {
   }
   
 });
+
+Meteor.publish("user", (userId)=> {
+  check(userId, String);
+  return Meteor.users.find({_id: userId});
+});
