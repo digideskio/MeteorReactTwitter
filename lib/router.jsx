@@ -12,7 +12,7 @@ FlowRouter.route('/tweets', {
   name: 'tweets',
   subscriptions(params, queryParams) {
     Tracker.autorun(()=>{
-      this.register('tweets', Meteor.subscribe('tweets', Session.get('limit'))); //queryParams.limit
+      this.register('tweets', Meteor.subscribe('tweets', Session.get('limit')));
     });
   },
 
@@ -51,12 +51,12 @@ FlowRouter.route('/users/:userid', {
 
 FlowRouter.route('/users/:userid/followers', {
   name: 'followers',
-  subscriptions(params, queryParams) {
-    Tracker.autorun(()=>{
-      this.register('followers', Meteor.subscribe('followers', params.userid)); 
-    });
-    this.register('user', Meteor.subscribe('user', params.userid));
-  },
+  // subscriptions(params, queryParams) {
+    // Tracker.autorun(()=>{
+      // this.register('followers', Meteor.subscribe('followers', params.userid)); 
+    // });
+    // this.register('user', Meteor.subscribe('user', params.userid));
+  // },
 
   action(params) {
     ReactLayout.render(MainLayout, {
@@ -68,9 +68,9 @@ FlowRouter.route('/users/:userid/followers', {
 FlowRouter.route('/users/:userid/followings', {
   name: 'followings',
   subscriptions(params, queryParams) {
-    Tracker.autorun(()=>{
+    // Tracker.autorun(()=>{
       this.register('followings', Meteor.subscribe('followings', params.userid)); 
-    });
+    // });
     this.register('user', Meteor.subscribe('user', params.userid));
   },
 

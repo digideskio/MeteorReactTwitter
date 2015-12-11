@@ -9,7 +9,7 @@ FollowingsBox = React.createClass({
       console.log('followings: ', Meteor.users.find({}).fetch());
       return {
         user: Meteor.users.findOne({_id: this.props.userid}),
-        followings: Meteor.users.find({followings: this.props.userid}).fetch()
+        followings: Meteor.users.find({followers: this.props.userid}).fetch()
       }
   },
 
