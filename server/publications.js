@@ -28,3 +28,13 @@ Meteor.publish("profile-tweets", (userId, limit)=> {
     return Tweets.find({userId: userId}, {sort: {submitted: -1}, limit: 3});
   }
 });
+
+Meteor.publish('followings', (userId)=> {
+  check(userId, String);
+  Meteor.users.find({followers: userId});
+});
+
+Meteor.publish('followers', (userId)=> {
+  check(userId, String);
+  Meteor.users.find({followings: userId});
+});

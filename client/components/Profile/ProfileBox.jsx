@@ -6,16 +6,15 @@ ProfileBox = React.createClass({
     if(!ready) {
       return {};
     }
-    console.log('InitialLimit', Session.get('profilelimit'));
+    // let userId = window.location.pathname.split('/users/')[1];
     return {
-      user : Meteor.users.find({}).fetch()[0],
+      user : Meteor.users.findOne({_id: this.props.userid}),
       tweets: Tweets.find({}, {sort: {submitted: -1}}).fetch()
     }
   },
 
   setLimit(e) {
     e.preventDefault();
-    console.log('profileLimit', Session.get('profilelimit'), this.data.tweets.length)
     if(this.data.tweets.length === Session.get('profilelimit')){
       Session.set('profilelimit', Session.get('profilelimit') + 3);
     } else {
@@ -23,15 +22,29 @@ ProfileBox = React.createClass({
     }
   },
 
+  follow(e){
+    e.preventDefault();
+    Meteor.call("follow", this.data.user._id);
+  },
+
   render(){
+    let followButton = '';
+
     if(this.data.user){
+      if(this.data.user._id !== Meteor.userId()){
+        followButton = <button id="followButton" onClick={this.follow}>Follow</button>;
+      }
+
+      let followersLink = `/users/${this.data.user._id}/followers`;
+      let followingsLink = `/users/${this.data.user._id}/followings`;
 
       return (
         <div>
           <h3>Profile</h3>
-
-          <h3>{this.data.user.username}</h3>
-          <a href="/tweets">TWEETS</a>
+          <a href={followersLink}>Followers</a>
+          <a href={followingsLink}>Followings</a>
+          <h3>{this.data.user.username}{followButton}</h3>
+          <h3>{this.data.user.username}'s tweets</h3>
           <TweetList tweets={this.data.tweets} />
           <button id="profile-loadmore">
             <a href="" onClick={this.setLimit}>Load More</a>

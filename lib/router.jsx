@@ -42,9 +42,41 @@ FlowRouter.route('/users/:userid', {
     this.register('user', Meteor.subscribe('user', params.userid));
   },
 
-  action() {
+  action(params) {
     ReactLayout.render(MainLayout, {
-      content: <ProfileBox />
+      content: <ProfileBox {...params}/>
+    });
+  }
+});
+
+FlowRouter.route('/users/:userid/followers', {
+  name: 'followers',
+  subscriptions(params, queryParams) {
+    Tracker.autorun(()=>{
+      this.register('followers', Meteor.subscribe('followers', params.userid)); 
+    });
+    this.register('user', Meteor.subscribe('user', params.userid));
+  },
+
+  action(params) {
+    ReactLayout.render(MainLayout, {
+      content: <FollowersBox {...params}/>
+    });
+  }
+});
+
+FlowRouter.route('/users/:userid/followings', {
+  name: 'followings',
+  subscriptions(params, queryParams) {
+    Tracker.autorun(()=>{
+      this.register('followings', Meteor.subscribe('followings', params.userid)); 
+    });
+    this.register('user', Meteor.subscribe('user', params.userid));
+  },
+
+  action(params) {
+    ReactLayout.render(MainLayout, {
+      content: <FollowingsBox {...params}/>
     });
   }
 });
