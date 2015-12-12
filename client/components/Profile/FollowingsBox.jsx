@@ -2,10 +2,6 @@ FollowingsBox = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-
-    // let userSubs = Meteor.subscribe('user', this.props.userid);
-    // let followingsSubs = Meteor.subscribe('followings', this.props.userid);
-    // if(userSubs.ready() && followersSubs.ready()) {
       return {
         user: Meteor.users.findOne({_id: this.props.userid}) || {},
         followings: Meteor.users.find({followers: this.props.userid}).fetch() || []
