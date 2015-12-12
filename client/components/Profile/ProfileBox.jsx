@@ -41,7 +41,7 @@ ProfileBox = React.createClass({
       return (
         <div>
           <h3>Profile</h3>
-          <a href={followersLink}>Followers</a>
+          <a href={followersLink}>Followers</a><br />
           <a href={followingsLink}>Followings</a>
           <h3>{this.data.user.username}{followButton}</h3>
           <h3>{this.data.user.username}'s tweets</h3>
