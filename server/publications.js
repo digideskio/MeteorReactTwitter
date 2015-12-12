@@ -31,10 +31,10 @@ Meteor.publish("profile-tweets", (userId, limit)=> {
 
 Meteor.publish('followings', (userId)=> {
   check(userId, String);
-  Meteor.users.find({followers: userId});
+  return Meteor.users.find({followers: userId});
 });
 
 Meteor.publish('followers', (userId)=> {
   check(userId, String);
-  Meteor.users.find({followings: userId});
+  return Meteor.users.find({followings: userId});
 });
