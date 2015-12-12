@@ -8,6 +8,33 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/register', {
+  name: 'register',
+  action() {
+    ReactLayout.render(MainLayout, {
+      content: <Register />
+    });
+  }
+});
+
+FlowRouter.route('/login', {
+  name: 'login',
+  action() {
+    ReactLayout.render(MainLayout, {
+      content: <Login />
+    });
+  }
+});
+
+FlowRouter.route('/forgotpassword', {
+  name: 'forgotpassword',
+  action() {
+    ReactLayout.render(MainLayout, {
+      content: <ForgotPass />
+    });
+  }
+});
+
 FlowRouter.route('/tweets', {
   name: 'tweets',
   subscriptions(params, queryParams) {

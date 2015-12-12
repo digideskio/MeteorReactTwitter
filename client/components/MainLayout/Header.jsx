@@ -1,4 +1,19 @@
 Header = React.createClass({
+  mixins: [ReactMeteorData],
+
+  getMeteorData: function() {
+    return {
+      user: Meteor.user()
+    }
+  },
+
+  logout: function(e) {
+    e.preventDefault();
+    Meteor.logout();
+
+    FlowRouter.go("login");
+  },
+
   render() {
 
     let styles = {
@@ -19,18 +34,20 @@ Header = React.createClass({
 
     let loggedInComponent1 = "";
     let loggedInComponent2 = "";
-    if (Meteor.user()){
+    let logoutButton = "";
+    if (this.data.user){
       let profileLink = `/users/${Meteor.userId()}`;
       loggedInComponent1 = <a href="/post_tweet" style={styles.item}>Post</a>;
       loggedInComponent2 = <a href={profileLink} style={styles.item}>Profile</a>;
+      logoutButton = <a href="" onClick={this.logout}>Logout</a>;
     }
-
+    // <AccountsUIWrapper />
     return (
       <div style={styles.main}>
         <a href="/tweets" style={styles.item}>Tweets</a>
         {loggedInComponent1}
         {loggedInComponent2}
-        <AccountsUIWrapper />
+        {logoutButton}
       </div>
     );
   }
