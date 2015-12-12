@@ -29,12 +29,26 @@ Meteor.publish("profile-tweets", (userId, limit)=> {
   }
 });
 
-Meteor.publish('followings', (userId)=> {
+Meteor.publish('followings', (userId, limit)=> {
   check(userId, String);
-  return Meteor.users.find({followers: userId});
+
+  var limitNum = parseInt(limit);
+  if(limitNum){
+    check(limitNum, Number);
+    return Meteor.users.find({followers: userId}, {sort: {username: 1}, limit: limitNum});
+  } else {
+    return Meteor.users.find({followers: userId}, {sort: {username: 1}, limit: 3});
+  }
 });
 
-Meteor.publish('followers', (userId)=> {
+Meteor.publish('followers', (userId, limit)=> {
   check(userId, String);
-  return Meteor.users.find({followings: userId});
+  
+  var limitNum = parseInt(limit);
+  if(limitNum){
+    check(limitNum, Number);
+    return Meteor.users.find({followings: userId}, {sort: {username: 1}, limit: limitNum});
+  } else {
+    return Meteor.users.find({followings: userId}, {sort: {username: 1}, limit: 3});
+  }
 });

@@ -4,7 +4,16 @@ FollowersBox = React.createClass({
   getMeteorData() {
     return {
       user: Meteor.users.findOne({_id: this.props.userid}) || {},
-      followers: Meteor.users.find({'followings': this.props.userid}).fetch() || []
+      followers: Meteor.users.find({'followings': this.props.userid}, {sort: {username: 1}}).fetch() || []
+    }
+  },
+
+  setLimit(e) {
+    e.preventDefault();
+    if(this.data.followers.length === Session.get('followerslimit')){
+      Session.set('followerslimit', Session.get('followerslimit') + 3);
+    } else {
+      document.getElementById('followers-loadmore').setAttribute('class', 'disabledBtn');
     }
   },
 
@@ -30,6 +39,9 @@ FollowersBox = React.createClass({
         <ul>
           {followersList}
         </ul>
+        <button id="followers-loadmore">
+          <a href="" onClick={this.setLimit}>Load More</a>
+        </button>
       </div>
     )
   }

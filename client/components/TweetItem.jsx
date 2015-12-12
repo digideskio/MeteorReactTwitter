@@ -4,7 +4,6 @@ TweetItem = React.createClass({
     author: React.PropTypes.string.isRequired,
     userId: React.PropTypes.string,
     body: React.PropTypes.string.isRequired
-    // submitted: React.PropTypes.instanceOf(Date).isRequired
   },
 
   handleDelete(e) {

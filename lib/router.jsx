@@ -53,7 +53,7 @@ FlowRouter.route('/users/:userid/followers', {
   name: 'followers',
   subscriptions(params, queryParams) {
     Tracker.autorun(()=>{
-      this.register('followers', Meteor.subscribe('followers', params.userid)); 
+      this.register('followers', Meteor.subscribe('followers', params.userid, Session.get('followerslimit'))); 
     });
     this.register('user', Meteor.subscribe('user', params.userid));
   },
@@ -69,7 +69,7 @@ FlowRouter.route('/users/:userid/followings', {
   name: 'followings',
   subscriptions(params, queryParams) {
     Tracker.autorun(()=>{
-      this.register('followings', Meteor.subscribe('followings', params.userid)); 
+      this.register('followings', Meteor.subscribe('followings', params.userid, Session.get('followingslimit'))); 
     });
     this.register('user', Meteor.subscribe('user', params.userid));
   },

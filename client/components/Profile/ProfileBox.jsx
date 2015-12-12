@@ -6,7 +6,7 @@ ProfileBox = React.createClass({
     if(!ready) {
       return {};
     }
-    // let userId = window.location.pathname.split('/users/')[1];
+
     return {
       user : Meteor.users.findOne({_id: this.props.userid}),
       tweets: Tweets.find({}, {sort: {submitted: -1}}).fetch()
@@ -18,7 +18,7 @@ ProfileBox = React.createClass({
     if(this.data.tweets.length === Session.get('profilelimit')){
       Session.set('profilelimit', Session.get('profilelimit') + 3);
     } else {
-      $('#profile-loadmore').addClass('disabledBtn');
+      document.getElementById('profile-loadmore').setAttribute('class', 'disabledBtn');
     }
   },
 
