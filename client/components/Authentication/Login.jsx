@@ -22,11 +22,28 @@ Login = React.createClass({
     return (
       <div className="">
         <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <p>Email: <input type="email" name="email" ref="emailInput" /></p>
-          <p>Password: <input type="password"
-                              name="password" ref="passwordInput" /></p>
-          <p><input type="submit" value="Login" /></p>
+
+        <form className="loginForm" onSubmit={this.handleSubmit}>
+
+          <label htmlFor="loginEmail">Email*</label><br />
+          <span id="errEmail" className="error"></span>
+          <input
+            type="email"
+            ref="emailInput"
+            name="loginEmail"
+            placeholder="Your Email"
+            required />
+
+          <label htmlFor="loginPassword">Password*</label><br />
+          <span id="errPass" className="error"></span>
+          <input
+            type="password"
+            ref="passwordInput"
+            name="loginPassword"
+            placeholder="Your Password"
+            required />
+
+          <button type="submit" className="canSubmit">Login</button>
         </form>
         <a href="/forgotpassword">forgot password</a>
       </div>

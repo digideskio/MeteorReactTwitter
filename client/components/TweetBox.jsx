@@ -3,8 +3,7 @@ TweetBox = React.createClass({
 
   getMeteorData() {
     return {
-      'tweets': Tweets.find({}, { 'sort': { 'submitted': -1 } }).fetch(),
-      'user': Meteor.user()
+      'tweets': Tweets.find({}, { 'sort': { 'submitted': -1 } }).fetch()
     };
   },
 
@@ -41,12 +40,18 @@ TweetBox = React.createClass({
       }
     };
 
+    let loadMore = <p>No tweets</p>;
+    if (this.data.tweets && this.data.tweets.length > 0) {
+      loadMore = <button id='moreTweets'
+                  onClick={this.setLimit} style={styles.loadMore}>
+                  Load More
+                </button>;
+    }
+
     return (
       <div style={styles.tweetBox}>
         <TweetList tweets={this.data.tweets} />
-        <button id='moreTweets' onClick={this.setLimit} style={styles.loadMore}>
-          Load More
-        </button>
+        {loadMore}
       </div>
     );
   }
