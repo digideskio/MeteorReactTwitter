@@ -3,7 +3,8 @@ TweetItem = React.createClass({
   'propTypes': {
     'author': React.PropTypes.string.isRequired,
     'userId': React.PropTypes.string,
-    'body': React.PropTypes.string.isRequired
+    'body': React.PropTypes.string.isRequired,
+    'authorEmail': React.PropTypes.string.isRequired
   },
 
   handleDelete(e) {
@@ -31,25 +32,24 @@ TweetItem = React.createClass({
   render() {
     const styles = {
       'listItemBox': {
-        // 'border': '1px solid green',
         'textAlign': 'left'
       },
 
       'itemBox': {
-        // 'border': '1px solid red'
-        'borderBottom': '1px solid #ddd'
+        'borderBottom': '1px solid #ddd',
+        'display': 'flex',
+        'flexDirection': 'row'
       },
 
       'imgBox': {
         'display': 'inline-block',
-        // 'border': '1px solid blue',
-        'width': '50px',
+        'width': '80px',
         'verticalAlign': 'top',
         'margin': '20px 10px 0 7px'
       },
 
       'profileImg': {
-        'max-width': '50px'
+        'maxWidth': '80px'
       },
 
       'contentBox': {
@@ -61,25 +61,29 @@ TweetItem = React.createClass({
       },
 
       'btn': {
-        'height': '25px',
+        'height': '20px',
         'width': '80px',
         'marginRight': '10px',
         'outline': 0,
         'borderRadius': '10px',
-        'border': '2px solid #2c3a55',
+        'border': '1px solid #2c3a55',
         'backgroundColor': 'transparent',
-        'fontSize': '1em'
+        'fontSize': '0.8em'
       }
     };
 
     let tweetItem = '';
     let profileLink = `/users/${this.props.userId}`;
     let time = moment(new Date(this.props.submitted)).fromNow();
+  
+
+    let hash = CryptoJS.MD5(this.props.authorEmail);
+    let gravatarUrl = `http://www.gravatar.com/avatar/${hash}/?s=200`;
 
     if (Meteor.userId() && Meteor.userId() === this.props.userId) {
       tweetItem = <div style={styles.itemBox}>
                     <div style={styles.imgBox}>
-                      <img src="images/favorite-icon-48.png"
+                      <img src={gravatarUrl}
                            style={styles.profileImg} />
                     </div>
                     <div style={styles.contentBox}>
@@ -99,7 +103,7 @@ TweetItem = React.createClass({
     } else if (Meteor.userId() && Meteor.userId() !== this.props.userId) {
       tweetItem = <div style={styles.itemBox}>
                     <div style={styles.imgBox}>
-                      <img src="images/favorite-icon-48.png"
+                      <img src={gravatarUrl}
                            style={styles.profileImg} />
                     </div>
                     <div style={styles.contentBox}>
@@ -121,7 +125,7 @@ TweetItem = React.createClass({
     } else {
       tweetItem = <div style={styles.itemBox}>
                     <div style={styles.imgBox}>
-                      <img src="images/favorite-icon-48.png"
+                      <img src={gravatarUrl}
                            style={styles.profileImg} />
                     </div>
                     <div style={styles.contentBox}>
