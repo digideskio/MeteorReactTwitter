@@ -59,6 +59,18 @@ ProfileBox = React.createClass({
         'color': '#777'
       },
 
+      'followBtn': {
+        'height': '40px',
+        'width': '150px',
+        'margin': '10px',
+        'textDecoration': 'none',
+        'borderRadius': '10px',
+        'border': '1px solid #777',
+        'backgroundColor': 'transparent',
+        'fontSize': '1em',
+        'color': '#777'
+      },
+
       'loadMore': {
         'outline': 0,
         'width': '100px',
@@ -76,7 +88,7 @@ ProfileBox = React.createClass({
     if (this.data.user) {
       if (this.data.user._id !== Meteor.userId()) {
         followButton = <button id="followButton"
-                        style={styles.btn}
+                        style={styles.followBtn}
                         onClick={this.follow}>Follow</button>;
       }
       let hash = CryptoJS.MD5(this.data.user.emails[0].address);

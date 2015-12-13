@@ -1,6 +1,6 @@
 FlowRouter.route('/', {
   'name': 'home',
-
+  'triggersEnter': [notLoggedIn],
   action() {
     ReactLayout.render(MainLayout, {
       'content': <Home />
@@ -10,6 +10,7 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/register', {
   'name': 'register',
+  'triggersEnter': [notLoggedIn],
   action() {
     ReactLayout.render(MainLayout, {
       'content': <Register />
@@ -19,6 +20,7 @@ FlowRouter.route('/register', {
 
 FlowRouter.route('/login', {
   'name': 'login',
+  'triggersEnter': [notLoggedIn],
   action() {
     ReactLayout.render(MainLayout, {
       'content': <Login />
@@ -28,6 +30,7 @@ FlowRouter.route('/login', {
 
 FlowRouter.route('/forgotpassword', {
   'name': 'forgotpassword',
+  'triggersEnter': [notLoggedIn],
   action() {
     ReactLayout.render(MainLayout, {
       'content': <ForgotPass />
@@ -127,5 +130,11 @@ FlowRouter.notFound = {
 function loggedinOnly(context, redirect) {
   if (!Meteor.userId()) {
     redirect('home');
+  }
+}
+
+function notLoggedIn(context, redirect) {
+  if (Meteor.userId()) {
+    redirect('tweets');
   }
 }
