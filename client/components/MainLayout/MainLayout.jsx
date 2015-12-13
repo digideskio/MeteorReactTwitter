@@ -1,10 +1,10 @@
 MainLayout = React.createClass({
   render() {
     let styles = {
-      margin: '50px auto 40px',
-      padding: '10px'
+      'margin': '50px auto 40px',
+      'padding': '10px'
     };
-    
+
     return (
       <div className="main-box">
         <Header />

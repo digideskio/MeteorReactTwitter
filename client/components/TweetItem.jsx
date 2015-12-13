@@ -1,9 +1,9 @@
 TweetItem = React.createClass({
 
-  propTypes: {
-    author: React.PropTypes.string.isRequired,
-    userId: React.PropTypes.string,
-    body: React.PropTypes.string.isRequired
+  'propTypes': {
+    'author': React.PropTypes.string.isRequired,
+    'userId': React.PropTypes.string,
+    'body': React.PropTypes.string.isRequired
   },
 
   handleDelete(e) {
@@ -17,11 +17,11 @@ TweetItem = React.createClass({
     let body = `${this.props.body} retweet`;
 
     let tweet = {
-      body: body
+      'body': body
     };
 
     Meteor.call('tweetInsert', tweet, (err, result)=>{
-      if(err) {
+      if (err) {
         console.log(err.reason);
       }
       FlowRouter.go('/tweets');
@@ -33,19 +33,26 @@ TweetItem = React.createClass({
     let profileLink = `/users/${this.props.userId}`;
     let time = moment(new Date(this.props.submitted)).fromNow();
 
-    if(Meteor.userId() && Meteor.userId() === this.props.userId) {
+    if (Meteor.userId() && Meteor.userId() === this.props.userId) {
       tweetItem = <p>
-                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
-                    <span> <button onClick={this.handleDelete}>X</button></span>
+                    {this.props.body} / {time} by
+                    <a href={profileLink}>{this.props.author}</a>
+                    <span>
+                      <button onClick={this.handleDelete}>X</button>
+                    </span>
                   </p>;
-    } else if(Meteor.userId() && Meteor.userId() !== this.props.userId){
+    } else if (Meteor.userId() && Meteor.userId() !== this.props.userId) {
       tweetItem = <p>
-                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
-                    <span> <button onClick={this.retweet}>Retweet</button></span>
+                    {this.props.body} / {time} by
+                    <a href={profileLink}>{this.props.author}</a>
+                    <span>
+                      <button onClick={this.retweet}>Retweet</button>
+                    </span>
                   </p>;
     } else {
       tweetItem = <p>
-                    {this.props.body} / {time} by <a href={profileLink}>{this.props.author}</a>
+                    {this.props.body} / {time} by
+                    <a href={profileLink}>{this.props.author}</a>
                   </p>;
     }
 

@@ -8,7 +8,7 @@ TweetList = React.createClass({
               userId={tweet.userId}
               body={tweet.body}
               submitted={tweet.submitted}
-              />
+              />;
     });
 
     return (

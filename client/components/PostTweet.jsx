@@ -1,21 +1,15 @@
 PostTweet = React.createClass({
-  getInitialState (){
-    return {
-      tweetBody: ""
-    }
-  },
-
   handleSubmit(e) {
     e.preventDefault();
     let tweet = {
-      body: ReactDOM.findDOMNode(this.refs.textInput).value.trim()
+      'body': ReactDOM.findDOMNode(this.refs.textInput).value.trim()
     };
 
     Meteor.call('tweetInsert', tweet, (err, result)=>{
-      if(err) {
+      if (err) {
         console.log(err.reason);
       }
-      ReactDOM.findDOMNode(this.refs.textInput).value = "";
+      ReactDOM.findDOMNode(this.refs.textInput).value = '';
       FlowRouter.go('/tweets');
     });
   },

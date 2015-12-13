@@ -1,38 +1,40 @@
 ProfileBox = React.createClass({
-  mixins: [ReactMeteorData],
+  'mixins': [ReactMeteorData],
 
   getMeteorData() {
     const ready = FlowRouter.subsReady();
-    if(!ready) {
+    if (!ready) {
       return {};
     }
 
     return {
-      user : Meteor.users.findOne({_id: this.props.userid}),
-      tweets: Tweets.find({}, {sort: {submitted: -1}}).fetch()
-    }
+      'user': Meteor.users.findOne({'_id': this.props.userid}),
+      'tweets': Tweets.find({}, {'sort': {'submitted': -1}}).fetch()
+    };
   },
 
   setLimit(e) {
     e.preventDefault();
-    if(this.data.tweets.length === Session.get('profilelimit')){
+    if (this.data.tweets.length === Session.get('profilelimit')) {
       Session.set('profilelimit', Session.get('profilelimit') + 3);
     } else {
-      document.getElementById('profile-loadmore').setAttribute('class', 'disabledBtn');
+      document.getElementById('profile-loadmore')
+              .setAttribute('class', 'disabledBtn');
     }
   },
 
-  follow(e){
+  follow(e) {
     e.preventDefault();
-    Meteor.call("follow", this.data.user._id);
+    Meteor.call('follow', this.data.user._id);
   },
 
-  render(){
+  render() {
     let followButton = '';
 
-    if(this.data.user){
-      if(this.data.user._id !== Meteor.userId()){
-        followButton = <button id="followButton" onClick={this.follow}>Follow</button>;
+    if (this.data.user) {
+      if (this.data.user._id !== Meteor.userId()) {
+        followButton = <button id="followButton"
+                        onClick={this.follow}>Follow</button>;
       }
 
       let followersLink = `/users/${this.data.user._id}/followers`;
@@ -46,17 +48,17 @@ ProfileBox = React.createClass({
           <h3>{this.data.user.username}{followButton}</h3>
           <h3>{this.data.user.username}'s tweets</h3>
           <TweetList tweets={this.data.tweets} />
-          <button id="profile-loadmore">
-            <a href="" onClick={this.setLimit}>Load More</a>
+          <button id="profile-loadmore" onClick={this.setLimit}>
+            Load More
           </button>
         </div>
-      )
-    } else {
-      return (
-        <div>
-          <h1>No user found</h1>
-        </div>
-      )
+      );
     }
+
+    return (
+      <div>
+        <h1>No user found</h1>
+      </div>
+    );
   }
 });

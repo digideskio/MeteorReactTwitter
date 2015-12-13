@@ -1,11 +1,11 @@
 ForgotPass = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
-    let email =ReactDOM.findDOMNode(this.refs.emailInput).value.trim();
+    let email = ReactDOM.findDOMNode(this.refs.emailInput).value.trim();
 
     // Todo: Check the validity of userObject
 
-    Accounts.forgotPassword({email: email}, function(err) {
+    Accounts.forgotPassword({'email': email}, (err)=> {
       if (err) {
         if (err.message === 'User not found [403]') {
           console.log('This email does not exist.');

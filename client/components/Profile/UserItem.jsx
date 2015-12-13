@@ -1,11 +1,11 @@
 UserItem = React.createClass({
 
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    userId: React.PropTypes.string.isRequired
+  'propTypes': {
+    'username': React.PropTypes.string.isRequired,
+    'userId': React.PropTypes.string.isRequired
   },
 
-  render(){
+  render() {
     let userPath = `/users/${this.props.userId}/`;
     return (
       <div className="userItem">
