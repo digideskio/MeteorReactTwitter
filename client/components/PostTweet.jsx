@@ -16,15 +16,15 @@ PostTweet = React.createClass({
 
   render() {
     return (
-      <div className="post-tweet-box">
+      <div className='post-tweet-box'>
         <form onSubmit={this.handleSubmit}>
           <input
-            type="text"
-            ref="textInput"
-            placeholder="Max:140 chars" />
+            type='text'
+            ref='textInput'
+            placeholder='Max:140 chars' />
           <button>Submit</button>
         </form>
-        <a href="/">Home</a>
+        <a href='/'>Home</a>
       </div>
     );
   }

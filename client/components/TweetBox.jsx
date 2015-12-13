@@ -13,24 +13,38 @@ TweetBox = React.createClass({
 
     if (this.data.tweets.length === Session.get('limit')) {
       Session.set('limit', Session.get('limit') + 3);
+      if (document.getElementById('moreTweets').innerHTML === 'No More') {
+        document.getElementById('moreTweets').innerHTML = 'Load More';
+      }
     } else {
-      document.getElementById('tweets-loadmore')
-        .setAttribute('class', 'disabledBtn');
+      document.getElementById('moreTweets').innerHTML = 'No More';
     }
   },
 
   render() {
-    let postTweet = '';
-    if (this.data.user) {
-      postTweet = <a href="/post_tweet">Post Tweet</a>;
-    }
+    let styles = {
+      'tweetBox': {
+        'width': '100%',
+        'textAlign': 'center',
+        'padding': 0
+      },
+
+      'loadMore': {
+        'outline': 0,
+        'width': '100px',
+        'height': '40px',
+        'backgroundColor': '#fff',
+        'border': '3px solid #00f0ff',
+        'borderRadius': '10px',
+        'fontSize': '1em',
+        'color': '#555'
+      }
+    };
 
     return (
-      <div className="tweet-box">
-        {postTweet}
-        <h3>Tweet List</h3>
+      <div style={styles.tweetBox}>
         <TweetList tweets={this.data.tweets} />
-        <button id="tweets-loadmore" onClick={this.setLimit}>
+        <button id='moreTweets' onClick={this.setLimit} style={styles.loadMore}>
           Load More
         </button>
       </div>

@@ -2,7 +2,8 @@ MainLayout = React.createClass({
   render() {
     let styles = {
       'margin': '50px auto 40px',
-      'padding': '10px'
+      'padding': '10px',
+      'maxWidth': '700px'
     };
 
     return (

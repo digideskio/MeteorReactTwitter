@@ -1,5 +1,13 @@
 TweetList = React.createClass({
   render() {
+    const styles = {
+      'ul': {
+        'listStyle': 'none',
+        'textAlign': 'center',
+        'padding': 0
+      }
+    };
+
     let tweetItems = this.props.tweets.map((tweet)=> {
       return <TweetItem
               key={tweet._id}
@@ -13,7 +21,7 @@ TweetList = React.createClass({
 
     return (
       <div className="tweet-list">
-        <ul>
+        <ul style={styles.ul}>
           {tweetItems}
         </ul>
       </div>

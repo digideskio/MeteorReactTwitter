@@ -1,7 +1,4 @@
-button {
-  background-color: #00f0ff;
-}
-
-.disabledBtn {
-  background-color: #ddd;
+html,
+body {
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
 }

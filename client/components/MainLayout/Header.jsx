@@ -29,15 +29,18 @@ Header = React.createClass({
       },
 
       'item': {
-        // 'marginRight': '10px',
         'flexGrow': 1,
-        'textAlign': 'center'
+        'textAlign': 'center',
+        'textDecoration': 'none',
+        'fontSize': '1.1em',
+        'color': '#333366'
       }
     };
 
     let loggedInComponent1 = '';
     let loggedInComponent2 = '';
     let logoutButton = '';
+
     if (this.data.user) {
       let profileLink = `/users/${Meteor.userId()}`;
       loggedInComponent1 = <a href="/post_tweet"
