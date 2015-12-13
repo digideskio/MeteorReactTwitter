@@ -23,11 +23,15 @@ Header = React.createClass({
         'left': 0,
         'height': '30px',
         'width': '100%',
-        'padding': '15px 10px 5px 10px'
+        'padding': '15px 0 5px 0',
+        'display': 'flex',
+        'flexDirection': 'row'
       },
 
       'item': {
-        'marginRight': '10px'
+        // 'marginRight': '10px',
+        'flexGrow': 1,
+        'textAlign': 'center'
       }
     };
 
@@ -40,11 +44,13 @@ Header = React.createClass({
                               style={styles.item}>Post</a>;
       loggedInComponent2 = <a href={profileLink}
                               style={styles.item}>Profile</a>;
-      logoutButton = <a href="" onClick={this.logout}>Logout</a>;
+      logoutButton = <a href="" onClick={this.logout}
+                                style={styles.item}>Logout</a>;
     } else {
       loggedInComponent1 = <a href="/register"
                               style={styles.item}>Register</a>;
-      loggedInComponent2 = <a href="/login">Login</a>;
+      loggedInComponent2 = <a href="/login"
+                              style={styles.item}>Login</a>;
     }
     return (
       <div style={styles.main}>
