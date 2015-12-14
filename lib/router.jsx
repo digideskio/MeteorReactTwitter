@@ -135,6 +135,6 @@ function loggedinOnly(context, redirect) {
 
 function notLoggedIn(context, redirect) {
   if (Meteor.userId()) {
-    redirect('login');
+    redirect('tweets');
   }
 }
