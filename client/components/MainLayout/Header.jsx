@@ -9,9 +9,9 @@ Header = React.createClass({
 
   logout(e) {
     e.preventDefault();
-    Meteor.logout();
-
-    FlowRouter.go('login');
+    Meteor.logout(()=>{
+      FlowRouter.go('login');
+    });
   },
 
   render() {
