@@ -129,12 +129,12 @@ FlowRouter.notFound = {
 
 function loggedinOnly(context, redirect) {
   if (!Meteor.userId()) {
-    redirect('home');
+    redirect('login');
   }
 }
 
 function notLoggedIn(context, redirect) {
   if (Meteor.userId()) {
-    redirect('tweets');
+    redirect('login');
   }
 }

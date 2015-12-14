@@ -44,8 +44,7 @@ TweetItem = React.createClass({
       'imgBox': {
         'display': 'inline-block',
         'width': '80px',
-        'verticalAlign': 'top',
-        'margin': '20px 10px 0 7px'
+        'margin': '5px 10px 5px 7px'
       },
 
       'profileImg': {
