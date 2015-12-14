@@ -63,6 +63,7 @@ Login = React.createClass({
             ref="emailInput"
             name="loginEmail"
             placeholder="Your Email"
+            autoFocus
             required />
 
           <label htmlFor="loginPassword">Password</label><br />
