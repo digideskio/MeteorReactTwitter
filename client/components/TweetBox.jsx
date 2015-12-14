@@ -40,7 +40,7 @@ TweetBox = React.createClass({
       }
     };
 
-    let loadMore = <p>No tweets</p>;
+    let loadMore = <h3>Loading ...</h3>;
     if (this.data.tweets && this.data.tweets.length > 0) {
       loadMore = <button id='moreTweets'
                   onClick={this.setLimit} style={styles.loadMore}>
