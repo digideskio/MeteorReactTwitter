@@ -1,6 +1,17 @@
 ### Twitter Clone
 
 [DEMO](http://mtc.meteor.com/)
+* deployed on meteor (free), so it is very slow to load
+
+**To run locally (OS X or Linux)**
+
+```
+curl https://install.meteor.com/ | sh
+git clone git@github.com:yhagio/MeteorReactTwitter.git
+cd MeteorReactTwitter
+meteor
+```
+Visit `http://localhost:3000/`
 
 #### Tech stack
 - [Meteor platform](https://www.meteor.com/)
